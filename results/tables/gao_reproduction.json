@@ -1,0 +1,52 @@
+{
+ "total_kg_s": 87.486201543871,
+ "t_ins": 0.16756898525615346,
+ "zeta": 0.5978010327930644,
+ "rows": [
+  {
+   "quantity": "Total pipe length (x1e4 m)",
+   "mst_paper": 1.19,
+   "mst_ours": 1.190043387779131,
+   "mst_err_pct": 0.0036460318597515383,
+   "star_paper": 3.65,
+   "star_ours": 3.65,
+   "star_err_pct": 0.0
+  },
+  {
+   "quantity": "Pipe capital cost (x1e7 CNY/y)",
+   "mst_paper": 1.03,
+   "mst_ours": 1.0300000090924382,
+   "mst_err_pct": 8.827609840522558e-07,
+   "star_paper": 0.869,
+   "star_ours": 1.1162870066255983,
+   "star_err_pct": 28.45650248856137
+  },
+  {
+   "quantity": "Pressure drop cost (x1e7 CNY/y)",
+   "mst_paper": 0.704,
+   "mst_ours": 0.7040000000000001,
+   "mst_err_pct": 1.5770213417970975e-14,
+   "star_paper": 0.274,
+   "star_ours": 0.5835202354895924,
+   "star_err_pct": 112.96358959474175
+  },
+  {
+   "quantity": "Heat loss cost (x1e7 CNY/y)",
+   "mst_paper": 0.443,
+   "mst_ours": 0.4429999233587295,
+   "mst_err_pct": -1.730051252746479e-05,
+   "star_paper": 1.1,
+   "star_ours": 0.7198858753393873,
+   "star_err_pct": -34.555829514601164
+  },
+  {
+   "quantity": "TOTAL ANNUAL COST (x1e7 CNY/y)",
+   "mst_paper": 2.18,
+   "mst_ours": 2.1769999324511677,
+   "mst_err_pct": -0.137617777469377,
+   "star_paper": 2.25,
+   "star_ours": 2.419693117454578,
+   "star_err_pct": 7.541916331314585
+  }
+ ]
+}

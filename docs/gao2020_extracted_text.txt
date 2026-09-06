@@ -1,0 +1,474 @@
+===== PAGE 1 =====
+ CHEMICAL ENGINEERING TRANSACTIONS  
+ 
+VOL. 81, 2020 
+A publication of 
+ 
+The Italian Association 
+of Chemical Engineering 
+Online at www.cetjournal.it 
+Guest Editors: Petar S. Varbanov, Qiuwang Wang, Min Zeng, Panos Seferlis, Ting Ma, Jiří J. Klemeš  
+Copyright © 2020, AIDIC Servizi S.r.l. 
+ISBN 978-88-95608-79-2; ISSN 2283-9216 
+Topology Optimization of Pipe Network in a Distributed 
+Energy System 
+Wei Gao a, Pengwei Deng b, Yiqi He b, Yan Wu c, Yufei Wang b,*, Shipeng Wang a, 
+Yuhao Zhoua 
+aHuadian Electric Power Research Institute Co., LTD, West Lake Science and Technology Economic Zone Road No.10 
+ Hangzhou, 310030, China 
+bState Key Laboratory of Heavy Oil Processing, China University of Petroleum (Beijing), No.18, Fuxue Road, Changping 
+ Beijing, 102249, China  
+cSchool of Chemical Engineering and Technology, Xi’an Jiaotong University, No.28, Xianning West Road, Xi’an, Shaanxi 
+ 710049, China 
+ wangyufei@cup.edu.cn 
+Under the stress of energy saving and environmental conservation, distributed energy system becomes more 
+promising due to its high energy efficiency. Previous research on the network of distributed energy system 
+mainly emphasize shortest pipe length, but ignore the heat and pressure loss during transportation in different 
+topologies. This work proposes two new topologies for the pipe network of distributed energy system, e.g 
+Euclidean Steiner minimum tree and Rectilinear Steiner minimum tree, to reduce the investment and energy 
+loss. The objective of this work is to minimize total annual cost involving capital cost, pressure drop and heat 
+loss. Graphic theory such as GeoSteiner and Kruskal algorithm are used to solve the problem. Linear model is 
+used to describe the calculation model of flow rate in the pipeline. Both graphic theory and linear programming 
+are coupled in the optimization framework. To illustrate the effectiveness of the two topologies, this work 
+compares them with conventional topologies, e.g. star style and Multiple Spanning Tree  style. Based on the 
+results, Euclidean Steiner minimum tree  has better economic performance, its total annual cost is 12  % and 
+9.17 % lower than star style and Multiple Spanning Tree.  
+1. Introduction 
+Distributed energy systems are synthetical energy utilization systems located in user end. The system is easier 
+to provide energy according to the different energy demand of users, so that compared with conventional energy 
+systems, distributed energy systems are more efficiency and environment friendly.  
+A d istribution network is an essential element of a distributed energy system. For a network, t he layout of 
+pipeline, the selection of diameter and Insulation layer thickness, and the hydraulic calculations all have great 
+impact on the economic and  efficiency performance of the system. Li et al. (2010)  optimize the system 
+considering supply variation of cooling and heating and the operation adjustment in different periods of a year 
+by using genetic algorithm (GA). Khir and Haouari (2015) studied the control system of distributed network, and 
+developed a Mixed Integer Nonlinear Programming based method to find the optimal cooling duty and storage 
+capacity. Zeng et al. (2016) investigated conventional central circulating pump system and the distributed  
+variable speed pumps system in a distributed energy system  by using integer-coded genetic algorithm. Wu et 
+al. (2016) established a multiple objective optimization framework to determine the optimal combination of 
+cogeneration and renewable energy . Li et al. (2019) proposed a modelling and optimization framework for 
+design of distributed energy systems in remote areas, featuring residential, small industrial, commercial and 
+agricultural power loads, off-grid network, and solar, wind, and biomass as primary energy sources. 
+The above-mentioned works do not consider the optimization of pipe network topology. However, it affects the 
+capital investment and operation cost significantly.  For the research of pipe network optimization, the relative 
+research is rare. Chan et al. (2007) considered the optimization of pipe network in a district cooling system, in 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                                                                                                                                                 DOI: 10.3303/CET2081047 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Paper Received: 30/04/2020; Revised: 31/05/2020; Accepted: 31/05/2020 
+Please cite this article as: Gao W., Deng P., He Y., Wu Y., Wang Y., Wang S., Zhou Y., 2020, Topology Optimization of Pipe Netw ork in a 
+Distributed Energy System, Chemical Engineering Transactions, 81, 277-282  DOI:10.3303/CET2081047 
+  
+277
+===== PAGE 2 =====
+their work, GA incorporated with local search techniques was developed to find the optimal/near optimal 
+configuration of the piping network in a hypothetical site. For the pipe network optimization of distributed energy 
+system, most scholars aimed to minimize capitalized cost  with user demand, velocity and pipe diameter as 
+constraints. The layout optimization problem is turned to Minimum Spanning Tree (MST) pro blem in graphic 
+theory and the pipe network is considered as branch style network. However, in these works, energy loss, 
+including heat loss and pressure drop, are not involved and different pipe network styles are not considered.  
+Based on predecessors’ work, this work considers the optimization of pipe network with Steiner Tree style. 
+Minimizing total annual cost (TAC) is set to be the objective function. Energy loss  are involved in the 
+optimization. Different graphic theory algorithms are used to optimize different pipe network style and the results 
+are compared and analyzed. This work can be used to find the best pipe network topology style and guide the 
+practical design of distributed energy system.  
+2. Mathematical models 
+The objective function is shown in Eq(1) as follows.  
+min pipe pressureloss heatlossC C C C= + +
+ (1) 
+1
+n
+pipe pipe
+k
+k
+CC
+=
+=
+ (2) 
+1
+n
+pressureloss pressureloss
+k
+k
+CC
+=
+=
+ (3) 
+1
+n
+heatheatl loss
+k
+k
+ossCC
+=
+=
+ (4) 
+In the equations, C (￥/y) is the total annual cost, Cpipe, Cpressureloss and Cheatloss are the capital cost, cost due to 
+pressure drop and cost due to heat loss of steam supply network. n is the number of branches in the pipe 
+network. It is noted that this work only considers one pipe network.  
+2.1 Model for pipe network capital cost 
+Capital cost can be calculated through Eq(5).In the equation, tyear (y) is the lifetime of the pipe network, I is the 
+interests rate, ak (￥/m) is the unit price of steam pipeline, Lk (m) is the length of each branch. ak is related to the 
+diameter of the pipeline, and the diameter can be calculated through Eq(6). In Eq(6), Dkin (m) is the inner 
+diameter of pipeline, Wk (kg/s) is the mass flow rate, ρ (kg/m3) is the density of steam, u (m/s) is velocity. It is 
+noted that in different branch within the network, mass flow rate is different, so the mass flow rate is solved 
+through a linear programming (LP) model, as shown in Eq (7). Eq(8-12) is the constraints of the LP model. In 
+these equations, wα,β,γ (kg/s) is the mass flow rate of branch connection betwe en vertices α and β. bbinary is a 
+binary variable indicating if a connection existed between the two vertices. Wγ is the mass flow rate of vertices 
+γ. If a user produce steam, Wγ will be a negative value, otherwise, it is a positive value. In each branch, the fluid 
+may flow from α to β, or from β to α, the term (-1)r is used to determine the flow direction.  
+(1 )
+(1 ) 1
+year
+year
+t
+pipe
+k k kt
+IIC a L
+I
++=
++−
+ (5) 
+4=in k
+k
+WD u
+ (6) 
+,,min
+nnn
+binaryW b w   
+  
+=
+ (7) 
+, , , ,(( 1) ( 1) ) 0
+nn
+r binary r binaryb w b w W      
+
+−  + −  − =
+ (8) 
+10
+( , )
+binary binary
+j j T
+j j j j
+bb
+E       
+   ==
+          =  =                
+ (9) 
+278
+===== PAGE 3 =====
+12rr
+   
+==         
+ (10) 
+,, 0w  
+ (11) 
+,, 0w  
+ (12) 
+( )
+0.48
+1 2 3 4= + + + out out
+k k k ka AWt A D A A D
+ (13) 
+( )
+2
+=644.3 +72.5 +0.4611in in
+k k kWt D D
+ (14) 
+ =1.052 +0.005251out in
+iiDD
+ (15) 
+In this work, only low-pressure steam is considered in the case. αk can be calculated through Eq(13) (Stijepovic 
+and Linke, 2011). In this equation,  Dkout (m) is the outer diameter of pipeline, Wtk (kg/m) is the weight of unit 
+length pipeline, A1 (￥/kg) is the price of unit weight pipe, A2 (￥/m0.48) is the installation cost of pipeline, A3 is 
+the road usage cost, A4 is the insulation cost. Eq(14) and(15) is used to calculated Dkout and Wtk.  
+2.2 Model for pressure drop cost 
+Steam does not need a compressor to transport it but during the transportation, pressure drop occurs. The 
+pressure of condensed water must be increased to meet the steam production requirement. Therefore, the 
+pressure drop cost Ckpressureloss is calculated in terms of water pump cost in this work, as shown in Eq(16).  
+= 1000
+E time
+pressureloss k
+k
+a t NC
+ (16) 
+k
+k
+NeN =
+ (17) 
+f
+k k kNe H W g=
+ (18) 
+2
+= 2
+fE k
+kk in
+k
+L uH Dg   ++
+
+
+ (19) 
+= 25
+EE kL
+ (20) 
+22
+1
+1
+11
+1 0.5 10
+0
+in in
+kk
+kk in ink
+kk
+in in in in
+k k k k
+SS
+SS
+j
+S S S S
+
+−
+−
+−−
+         = − = − =           =                 
+ (21) 
+( )
+2
+4
+in
+kin
+k
+D
+S
+
+=
+ (22) 
+In Eq(16), aE (￥/kW·h) is the unit power cost, ttime (h) is the annual operation time, Nk (W) is the shaft power of 
+power to overcome the flow resistance, and it can be calculated out through Eq(17). η is the efficiency of pump, 
+Nek (W) is the available power of pump, and it can be calculated through Eq(18). Hkf (m) is the pressure head 
+loss in the pipeline and it can be calculated through Eq(19) to (22). In these equations, ζk is the local resistance 
+coefficients when the flow area of pipeline is changed, ζE is the local resistance coefficients of elbow, S is the 
+flow area of pipeline, σ is the friction factors.  
+2.3 Model for heat loss cost 
+Heat loss cost can be calculated through Eq(23). In the equation, a (￥/kg) is the unit price of steam and q (kJ/kg) 
+is the latent heat of steam, Q (kJ/m·s) is the heat loss. When there is a isolation layer existed, the heat loss of 
+pipeline can be calculated through Eq(24) 
+time
+heatloss kk
+k
+aQ L tC q=
+ (23) 
+279
+===== PAGE 4 =====
+()
+121000( ln )
+a
+k o
+k
+no
+kk
+TTQ D
+DD
+
+
+−=
++
+ 
+(24) 
+In the equations, T (℃) is the temperature of pipeline outside surface, Ta (K) is the ambient temperature, Dk0 
+(m) and Dkn (m) are the inner and outer diameter of isolation layer. λ (W/m·K) is the thermal conductivity of 
+isolation layer, ε (W/m2·K) is the convective heat transfer coefficient between the layer surface and ambient.  
+3. Optimization algorithm  
+3.1 Kruskal algorithm 
+Kruskal algorithm belongs to graph theoretic approach, it can find the minimum spanning tree from a connected 
+graph, and it is a well -known greedy strategy to calculate the undirected connected graph with weights. So 
+Kruskal algorithm is selected.  
+3.2 GeoSteiner algorithm 
+GeoSteiner is the fastest program for computing exact solutions to Steiner tree prob lems, including the 
+rectilinear Steiner minimal tree (RSMT) and Euclidean Steiner minimal tree (ESMT) problem. Therefore, it is 
+selected to optimize the length of the pipe network. There are two phases for generating ESMT and RMST, e.g. 
+the generation of full Steiner tree (FST) and FST connections. The first phase is full Steiner tree (FST) 
+generation which is achieved by enumerate algorithm. The second phase is FST concatenation which is solved 
+by branch and cut algorithm. FST is a non-degenerate minimum Steiner tree in which every terminal has degree. 
+4. Case studies  
+The case considers four types of network topologies, e.g. Star, MST, RSMT and ESMT. MST is solved by 
+Kruskal algorithm, RSMT and ESMT are s olved by GeoSteiner algorithm. The modelling and optimization 
+processes are achieved through C++ coding. The model parameter used in this case is shown in Table 1.  
+Table 1: Model parameters in case study 
+Parameter Number unit Parameter Number unit 
+Tyear 10 y Ttime 8,760 h 
+I 0.02  η 0.8  
+ρ 0.60 kg/m3 σ 0.015 ￥/kg 
+u 30.00 m/s αk 0.1945  
+A1 5.74 ￥/y Q 1,999.9 kJ/kg 
+A2 1295 ￥/m0.48 Ta 276.5 K 
+A3 47.6 ￥/m λ 0.06 W/m2·K 
+A4 2065 ￥/m v 3.50 m/s 
+αE 0.21 ￥/kW·h ε 11.63 W/m·K 
+ 
+The calculation results are shown in Table 2 and Figure 1. In the figure, four types of topologies are shown and 
+the thickness of the line indicating the diameter of the pipes.  
+Table 2: Results of the case study 
+Topology type of pipe networks Star MST RSMT ESMT 
+Total pipe length (×104 m)  3.65 1.19 1.19 1.03 
+Total pipe cost (×107 ￥/y)  0.869 1.03 1.28 0.939 
+Pressure drop cost (×107 ￥/y) 0.274 0.704 0.936 0.654 
+Heat loss cost (×107 ￥/y) 1.10 0.443 0.458 0.387 
+Total cost (×107 ￥/y) 2.25 2.18 2.67 1.98 
+ 
+As shown in Table 2, the total cost of ESMT is the lowest, and that of RSMT is the highest. From the first row in 
+Table 2, it can be seen that the total pipe length of Star type is much longer than the others. The reason is that 
+every user and energy hub i s connected by an individual pipeline, no pipeline is shared. This topology is the 
+safest connection way because when a pipeline is damaged, only one user is affected. It is noted that although 
+280
+===== PAGE 5 =====
+the connection is the longest for the star type, the pipe cost  is not that high, the reason is that the diameter for 
+all the pipes is small. However, this type is not practical when the users are far away due to the very long 
+connections. Compared with star, MST RSMT ESMT is more suitable for practical design. Among them, the 
+connection of MST is relatively simpler, but the length of pipe line is relatively longer, so it is not good for energy 
+saving. The connection of RSMT is the neatest one, so it can have a good performance in practise to fit the road 
+layout. The connection of ESMT is the shortest among all four types, and the cost is also the lowest. If there are 
+no constraints for practical path, the connection of ESMT is the most economic design. Since ESMT considers 
+the connection of Steiner point, the pipe length of ESMT will definitely shorter than MST. Meanwhile, the path 
+way of RSMT is constrained, so its pipe length is longer than ESMT. 
+ 
+                                          
+(a) Star                                                (b) MST 
+                                        
+(c) RSMT                                               (d) ESMT 
+Figure 1: Results for different topology types 
+ 
+                        (a) distribution                                              (b) proportion 
+Figure 2: Cost distribution and proportion for the four topologies 
+Figure 2 shows the percentage of pipe cost, pressure drop cost and heat loss cost for the four topology types. 
+The cost distribution is quite similar for MST, RSMT and ESMT topologies, but the star topology is very different 
+from the others. For star topology, the perce ntage of heat loss cost is very high, the reason is that heat loss is 
+highly related to the length of the pipes, and star topology is one with the longest pipe length. The s ame 
+phenomenon can be found in ESMT topology because the pipe length for this topology is the shortest, heat loss 
+cost account for lower percentage of the total cost. For pipe investment, ESMT is the shortest on followed by 
+MST. From the model, the length of pipe network and flow rate in each branch both have a significant impact 
+on pipe investment. This is again the reason for the quite low pipe cost from star topology due to the lower flow 
+281
+===== PAGE 6 =====
+rate in each connection. C ontrarily, RSMT topology ha s large numbers in both pipe length the flow rate in 
+branches, so that the pipe investment for this topology is the highest.  
+Figure 3 illustrates the variation trend between network length, flow rate, pipe cost and TAC. It can be found 
+that, for different topology types, pipe length, the total flow rate cannot accurately reflect the variation of pip e 
+cost separately. These results illustrate the effectiveness of the proposed method to comprehensively consider 
+the factors involved in the pipe network design. 
+                      
+(a) Relation between length, pipe cost and TAC           (b) Relation between Flow rate, pipe cost and TAC 
+Figure 3: Relation between detailed elements for the four topologies 
+5. Conclusions 
+This work establish es a topology optimization model to optimize the pipe network of the distributed energy 
+system with the objective of minimizing TAC. New topology types such as ESMT and RSMT are proposed and 
+pressure drop and heat loss related cost are involved in the optimization. LP model is used to solve the optimal 
+flow rate in each branch of pipe network. Based on the results of the case study, it is found that: 
+(1) By compared the optimal structure and performance, ESMT is the most economic topology type.  
+(2) RSMT topology is a quite expensive type but it fits well with real life road layout. 
+(3) Star topology has the longest pipe connection and it is not practical for large scale problem with long 
+distance with users and energy hub.  
+(4) Pipe length and total flow rate cannot accurately reflect the economic performance of the network 
+separately. The proposed method is effeteness for finding the best network topology for a distributed energy 
+system. 
+In this work, the proposed work can be used to find the most economic pipe network. However, reliability of pipe 
+network is not quantified. Therefore, it is not guaranteed that the network topology is the best. In future, this 
+work will further extend to consider reliability.  
+Acknowledgements 
+Financial supports from Science Foundation of China University of Petroleum, Beijing (No. 2462018BJC004) 
+are gratefully acknowledged. 
+References 
+Chan A., Hanby V., Chow T., 2007, Optimization of distribution piping network in district cooling system using 
+genetic algorithm with local search, Energy Conversion and Management, 48(10), 2622-2629. 
+Khir R., Haouari M., 2015, Optimization models for a single-plant district cooling system, European Journal of 
+Operational Research, 247(2), 648-658. 
+Li J., Liu  P., Li  Z., 2019, Modelling and optimization of hybrid distributed energy  systems for remote area 
+electrification: a case study in west china, Chemical Engineering Transactions, 76, 1087-1092. 
+Li X., Lin D., Shu H., 2010, Optimal design of district heating and cooling pipe network of seawater-source heat 
+pump, Energy and Buildings, 42(1), 100-104. 
+Stijepovic M. Z., Linke P., 2011, Optimal waste heat recovery and reuse in industrial zones. Energy, 36(7):4019-
+4031 
+Wu Q., Ren H., Gao W., Ren J., 2016, Multi-Objective optimization of a distributed energy network integrated 
+with heating interchange, Energy, 109, 353-364. 
+Zeng J., Han J., Zhang G., 2016, Diameter optimization of district heating and cooling piping network based on 
+hourly load, Applied Thermal Engineering, 107, 750-757. 
+282

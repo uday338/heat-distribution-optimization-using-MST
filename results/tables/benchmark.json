@@ -1,0 +1,93 @@
+{
+ "rows": [
+  {
+   "n": 25,
+   "n_edges": 300,
+   "kruskal_s": 9.159999899566174e-05,
+   "prim_s": 0.00018200001795776188,
+   "prim_dense_s": 0.0003217000048607588,
+   "networkx_s": 0.0011076999944634736,
+   "weight": 17401.765359150904,
+   "kruskal_examined": 106,
+   "kruskal_rejected": 82,
+   "speedup": 0.5032966481185734
+  },
+  {
+   "n": 50,
+   "n_edges": 1225,
+   "kruskal_s": 0.00019379999139346182,
+   "prim_s": 0.0007209999894257635,
+   "prim_dense_s": 0.0005507000023499131,
+   "networkx_s": 0.001984000002266839,
+   "weight": 24580.84796128461,
+   "kruskal_examined": 90,
+   "kruskal_rejected": 41,
+   "speedup": 0.2687933345849461
+  },
+  {
+   "n": 100,
+   "n_edges": 4950,
+   "kruskal_s": 0.0010203999991063029,
+   "prim_s": 0.0033254000009037554,
+   "prim_dense_s": 0.0011251000105403364,
+   "networkx_s": 0.00833109999075532,
+   "weight": 34467.86018284699,
+   "kruskal_examined": 851,
+   "kruskal_rejected": 752,
+   "speedup": 0.3068503033707179
+  },
+  {
+   "n": 200,
+   "n_edges": 19900,
+   "kruskal_s": 0.003485100023681298,
+   "prim_s": 0.0156903000024613,
+   "prim_dense_s": 0.0023212000087369233,
+   "networkx_s": 0.03142770001431927,
+   "weight": 44776.07629495341,
+   "kruskal_examined": 900,
+   "kruskal_rejected": 701,
+   "speedup": 0.2221181254108971
+  },
+  {
+   "n": 400,
+   "n_edges": 79800,
+   "kruskal_s": 0.018076400010613725,
+   "prim_s": 0.10911569997551851,
+   "prim_dense_s": 0.005239300022367388,
+   "networkx_s": 0.1611302999954205,
+   "weight": 67335.22543776147,
+   "kruskal_examined": 1824,
+   "kruskal_rejected": 1425,
+   "speedup": 0.16566268662226788
+  },
+  {
+   "n": 800,
+   "n_edges": 319600,
+   "kruskal_s": 0.08429110000724904,
+   "prim_s": 0.8823495999968145,
+   "prim_dense_s": 0.011699499998940155,
+   "networkx_s": 0.7397168999887072,
+   "weight": 93683.38725982272,
+   "kruskal_examined": 4096,
+   "kruskal_rejected": 3297,
+   "speedup": 0.09553027508320211
+  },
+  {
+   "n": 1600,
+   "n_edges": 1279200,
+   "kruskal_s": 0.41975130001083016,
+   "prim_s": 6.114422899991041,
+   "prim_dense_s": 0.02883190001011826,
+   "networkx_s": NaN,
+   "weight": 129932.49990866506,
+   "kruskal_examined": 9470,
+   "kruskal_rejected": 7871,
+   "speedup": 0.06864937327305987
+  }
+ ],
+ "scaling": {
+  "kruskal": 2.07721197991569,
+  "prim": 2.5235152943040364,
+  "prim_dense": 1.0891004344411737
+ }
+}

@@ -1,0 +1,31 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- Regenerable intermediates --------------------------------------------
+# Cached topology objects: rebuilt in seconds by `python run_real.py`.
+results/*.pkl
+# Scratch arrays from exploratory runs.
+*.npy
+# Down-scaled JPEGs for the deck: rebuilt by `python build/make_deck.py`.
+results/figures/web/
+
+# --- Kept deliberately, do NOT ignore -------------------------------------
+# data/aixdhn/*.geojson  real source data (MIT licence, ~2 MB)
+# data/dem/*.pkl         cached SRTM rasters: ~8 min and ~360 API calls to
+#                        regenerate, so they ship with the repo
+# results/figures/*.png  presentation figures
+# results/tables/*.json  numerical results
+# build/deck.html        the built presentation
+
+# --- OS / editor ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
