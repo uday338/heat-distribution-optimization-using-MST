@@ -29,3 +29,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# PowerPoint / Word owner-lock files
+~$*

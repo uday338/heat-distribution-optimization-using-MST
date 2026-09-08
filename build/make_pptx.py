@@ -116,12 +116,16 @@ def new_slide(prs):
     return s
 
 
-def rail(slide, n, section, timing):
+def rail(slide, n, section):
+    """Top rail: slide number and section only.
+
+    Speaker timings deliberately do NOT appear here - they live in the notes
+    pane and in SPEAKER_NOTES.md, where the presenter sees them and the
+    audience does not.
+    """
     tf = textbox(slide, M, 0.30, CW, 0.3)
     rich(tf, [(f"{n:02d}   ", HOT, True), (section.upper(), INK2, False)],
          11.5, font=MONO, first=True)
-    tf2 = textbox(slide, W - M - 3.0, 0.30, 3.0, 0.3)
-    para(tf2, timing, 11.5, MUTED, font=MONO, first=True, align=PP_ALIGN.RIGHT)
     ln = rect(slide, M, 0.66, CW, 0.012, fill=LINE, line=None)
     return ln
 
@@ -233,7 +237,7 @@ def build():
 
     # ============================================================ 2 SETUP
     s = new_slide(prs)
-    rail(s, 2, "Setup · problem, data, method", "0:45  |  running 1:00")
+    rail(s, 2, "Setup · problem, data, method")
     heading(s, "A pipe network is a graph, and the topology is the design decision")
 
     h = picture(s, "fig1_networks", M, 1.75, 8.05)
@@ -275,7 +279,7 @@ def build():
 
     # ============================================================ 3 RESULT 1
     s = new_slide(prs)
-    rail(s, 3, "Result 1 · terrain-weighted routing", "0:55  |  running 1:55")
+    rail(s, 3, "Result 1 · terrain-weighted routing")
     heading(s, "A longer tree can be the cheaper tree")
 
     picture(s, "fig3_terrain_effect", M, 1.72, CW, max_h=3.72, centre=True)
@@ -309,7 +313,7 @@ def build():
 
     # ============================================================ 4 RESULT 2
     s = new_slide(prs)
-    rail(s, 4, "Result 2 · hydraulic feasibility", "0:55  |  running 2:50")
+    rail(s, 4, "Result 2 · hydraulic feasibility")
     heading(s, "In Stuttgart the cost-optimal tree cannot legally be built")
 
     picture(s, "fig8_pressure_zones", M, 1.72, 8.5)
@@ -359,7 +363,7 @@ def build():
 
     # ============================================================ 5 RESULT 3
     s = new_slide(prs)
-    rail(s, 5, "Result 3 · reliability", "1:00  |  running 3:50")
+    rail(s, 5, "Result 3 · reliability")
     heading(s, "Every tree edge is a bridge — and Steiner trees make it worse")
 
     picture(s, "fig4_reliability", M, 1.70, 8.35)
@@ -414,7 +418,7 @@ def build():
 
     # ============================================================ 6 RESULT 4
     s = new_slide(prs)
-    rail(s, 6, "Result 4 · algorithms and the reproduction", "0:50  |  running 4:40")
+    rail(s, 6, "Result 4 · algorithms and the reproduction")
     heading(s, "Kruskal vs Prim, and two findings against the source paper")
 
     picture(s, "fig5_algorithms", M, 1.70, 7.15)
@@ -467,7 +471,7 @@ def build():
 
     # ============================================================ 7 CLOSE
     s = new_slide(prs)
-    rail(s, 7, "Conclusion", "0:20  |  running 5:00")
+    rail(s, 7, "Conclusion")
     heading(s, "Terrain belongs in the weight. Pressure class belongs in the "
                "constraints. Reliability belongs in the objective.", size=27)
 
