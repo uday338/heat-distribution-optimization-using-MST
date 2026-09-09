@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 
 from PIL import Image
 from pptx import Presentation
@@ -254,7 +255,7 @@ def build():
 
     x = M + 8.35
     w = CW - 8.35
-    tf = textbox(s, x, 1.72, w, 2.25)
+    tf = textbox(s, x, 1.72, w, 1.75)
     para(tf, "THE GRAPH", 9.5, MUTED, font=MONO, first=True, space_after=6)
     para(tf, "V = 1 plant + 40 substations", 12.5, INK, font=MONO, space_after=3)
     para(tf, "E = every feasible trench route", 12.5, INK, font=MONO,
@@ -265,12 +266,12 @@ def build():
     para(tf, "Minimum Spanning Tree (MST): the cheapest loop-free layout "
              "that still reaches every consumer.", 11.5, COOL, spacing=0.98)
 
-    stat(s, x, 4.06, w, 1.06, "Real heat demand",
+    stat(s, x, 3.55, w, 1.20, "Real heat demand",
          "859 GWh/y", "67,314 households (AixDHN, RWTH Aachen)", COOL)
-    stat(s, x, 5.22, w, 1.22, "Real elevation",
+    stat(s, x, 4.83, w, 1.36, "Real elevation",
          "29,248 points", "NASA satellite data, sampled every 25 m along "
          "every candidate route", COOL)
-    stat(s, x, 6.56, w, 0.92, "Relief = height range",
+    stat(s, x, 6.27, w, 1.16, "Relief = height range",
          "63 m  vs  282 m", "flat Bremen vs hilly Stuttgart", WARN)
 
     notes(s, "SETUP - 45 s. Nodes are substations, edges are candidate trenches, "
@@ -345,11 +346,11 @@ def build():
     rich(tf, [("one-zone limit      ", INK2, False),
               ("151 m", WARN, True)], 13.5, font=MONO)
 
-    stat(s, x, 4.02, w, 1.52, "Pressure zones needed",
-         "Stuttgart 2   Bremen 1",
-         "PN16 = Pressure Nominal: pipe rated to 16 bar. An exchanger station "
-         "splits the network so neither half exceeds it.", WARN)
-    finding(s, x, 5.74, w, 1.6, "Spectral bisection at work",
+    stat(s, x, 4.02, w, 1.58, "Pressure zones needed",
+         "2  vs  1",
+         "hilly Stuttgart needs two, flat Bremen one. PN16 = Pressure "
+         "Nominal: a pipe rated to 16 bar.", WARN)
+    finding(s, x, 5.72, w, 1.62, "Spectral bisection at work",
             "Where to split is a balanced minimum cut — separate by "
             "elevation, cut as few pipes as possible. The Fiedler vector of the "
             "Laplacian is the classical relaxation of exactly that.")
@@ -502,7 +503,7 @@ def build():
          COOL),
         ("Algorithms", "212×", "dense Prim over heap Prim", COOL),
     ]):
-        stat(s, M + i * (CW / 4), y, CW / 4 - 0.24, 1.45, k, v, sub, c)
+        stat(s, M + i * (CW / 4), y, CW / 4 - 0.24, 1.58, k, v, sub, c)
 
     tf = textbox(s, M, 4.55, CW, 0.9)
     para(tf, "On flat ground a minimum spanning tree is the right answer. On "
@@ -581,7 +582,19 @@ def build():
 
     os.makedirs("build", exist_ok=True)
     out = "build/CLL798_prelim_5min.pptx"
-    prs.save(out)
+    try:
+        prs.save(out)
+    except PermissionError:
+        # PowerPoint holds an exclusive lock while the deck is open. Rather
+        # than lose the build, write beside it and say so loudly.
+        alt = out.replace(".pptx", "_NEW.pptx")
+        prs.save(alt)
+        print("")
+        print(f"  !! {out} is open in PowerPoint and could not be written.")
+        print(f"  !! Wrote {alt} instead. Close PowerPoint and re-run to")
+        print("  !! collapse it back to the single canonical filename.")
+        print("")
+        return alt
     return out
 
 
@@ -603,4 +616,14 @@ if __name__ == "__main__":
         fh.write(f"\n**Total: {total//60}:{total%60:02d}**\n")
     print(f"wrote {out}  ({size:.1f} MB, {n_slides} slides: "
           f"7 presented + 1 reference)")
+
+    # A box that holds more text than it can show is invisible in the file and
+    # obvious on a projector, so the build checks itself.
+    sys.path.insert(0, "build")
+    from audit_pptx import audit
+    print("\nchecking for text overflow ...")
+    if audit(out):
+        print("  ^ fix these before presenting")
+    else:
+        print("  no text overflow")
     print("wrote build/SPEAKER_NOTES.md")
