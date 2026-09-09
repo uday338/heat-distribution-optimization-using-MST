@@ -2,7 +2,9 @@
 make_pptx.py - Build the 5-minute prelim deck as a real .pptx for Moodle.
 
 Format constraints this file is designed around:
-  * 5 minutes, strictly enforced -> 7 slides, ~43 s each
+  * 5 minutes, strictly enforced -> 7 presented slides, ~43 s each, plus
+    one un-presented reference slide (abbreviations + sources) to jump to
+    during the 5 minutes of question time
   * "invest around 4 mins in discussing the results" -> slides 3-6 are results
   * runs on a seminar-hall PC -> Segoe UI / Consolas only (shipped with
     Windows), no web fonts, no internet, images embedded
@@ -205,15 +207,18 @@ def build():
          first=True, spacing=0.92)
     para(tf, "contact with a hillside", 44, HOT, bold=True, spacing=0.92)
 
-    tf = textbox(s, M, 3.85, 9.4, 1.2)
+    tf = textbox(s, M, 3.70, 10.6, 1.8)
     para(tf, "Graph-theoretic topology optimisation of district-heating pipe "
-             "networks — on two real German networks, real SRTM terrain, "
-             "and a transport-phenomena cost model.", 16, INK2, first=True,
-         spacing=1.05)
+             "networks — on two real German networks, real satellite elevation "
+             "data, and a transport-phenomena cost model.", 16, INK2,
+         first=True, spacing=1.05, space_after=11)
+    para(tf, "MST = Minimum Spanning Tree    ·    TAC = Total Annual Cost"
+             "    ·    SRTM = Shuttle Radar Topography Mission",
+         11.5, MUTED, font=MONO, spacing=1.0)
 
     for i, (k, v, c) in enumerate([
         ("Real networks", "Bremen  ·  Stuttgart", COOL),
-        ("Terrain", "NASA SRTM 30 m", COOL),
+        ("Elevation data", "NASA SRTM, 30 m grid", COOL),
         ("Algorithms", "Kruskal · Prim · Steiner", COOL),
     ]):
         x = M + i * (CW / 3)
@@ -240,25 +245,33 @@ def build():
     rail(s, 2, "Setup · problem, data, method")
     heading(s, "A pipe network is a graph, and the topology is the design decision")
 
-    h = picture(s, "fig1_networks", M, 1.75, 8.05)
+    h = picture(s, "fig1_networks", M, 1.72, 7.95)
+    tfc = textbox(s, M, 6.80, 7.95, 0.68)
+    para(tfc, "A district-heating network pipes hot water from one central "
+              "plant to every building in a city district. The buried pipe "
+              "layout is 80-90 % of lifetime cost, so choosing the topology "
+              "IS the design decision.", 12, INK2, first=True, spacing=1.0)
 
     x = M + 8.35
     w = CW - 8.35
-    tf = textbox(s, x, 1.75, w, 1.5)
+    tf = textbox(s, x, 1.72, w, 2.25)
     para(tf, "THE GRAPH", 9.5, MUTED, font=MONO, first=True, space_after=6)
-    para(tf, "V = 1 plant + 40 substations", 13, INK, font=MONO, space_after=3)
-    para(tf, "E = every feasible trench route", 13, INK, font=MONO, space_after=3)
-    para(tf, "layout = spanning tree", 13, INK, font=MONO, space_after=3)
+    para(tf, "V = 1 plant + 40 substations", 12.5, INK, font=MONO, space_after=3)
+    para(tf, "E = every feasible trench route", 12.5, INK, font=MONO,
+         space_after=3)
+    para(tf, "layout = spanning tree", 12.5, INK, font=MONO, space_after=3)
     rich(tf, [("candidates = ", INK, False), ("41", HOT, True),
-              ("^39 ≈ 10^62", HOT, True)], 13, font=MONO)
+              ("^39 ~ 10^62", HOT, True)], 12.5, font=MONO, space_after=9)
+    para(tf, "Minimum Spanning Tree (MST): the cheapest loop-free layout "
+             "that still reaches every consumer.", 11.5, COOL, spacing=0.98)
 
-    stat(s, x, 3.55, w, 1.15, "Real demand",
-         "859 GWh/y", "67,314 households, from the AixDHN census dataset", COOL)
-    stat(s, x, 4.85, w, 1.15, "Real terrain",
-         "29,248 pts", "NASA SRTM 30 m, sampled every 25 m along each route",
-         COOL)
-    stat(s, x, 6.15, w, 1.0, "Relief contrast",
-         "63 m  vs  282 m", "Bremen against Stuttgart", WARN)
+    stat(s, x, 4.06, w, 1.06, "Real heat demand",
+         "859 GWh/y", "67,314 households (AixDHN, RWTH Aachen)", COOL)
+    stat(s, x, 5.22, w, 1.22, "Real elevation",
+         "29,248 points", "NASA satellite data, sampled every 25 m along "
+         "every candidate route", COOL)
+    stat(s, x, 6.56, w, 0.92, "Relief = height range",
+         "63 m  vs  282 m", "flat Bremen vs hilly Stuttgart", WARN)
 
     notes(s, "SETUP - 45 s. Nodes are substations, edges are candidate trenches, "
              "a valid layout is a spanning tree, and there are 10^62 of them so "
@@ -285,15 +298,16 @@ def build():
     picture(s, "fig3_terrain_effect", M, 1.72, CW, max_h=3.72, centre=True)
 
     y = 5.62
-    stat(s, M, y, 3.9, 1.28, "Stuttgart · hilly", "−3.0 % TAC",
-         "23.09 → 22.39 EUR/MWh, for a tree that is 0.03 km LONGER", HOT)
+    stat(s, M, y, 3.9, 1.28, "Stuttgart · hilly", "−3.0 % cost",
+         "total annual cost 23.09 → 22.39 EUR per MWh delivered, for a tree "
+         "that is 0.03 km LONGER", HOT)
     stat(s, M + 4.1, y, 3.9, 1.28, "Bremen · flat", "0.0 %",
          "terrain weighting returns the identical tree — the control works",
          COOL)
-    finding(s, M + 8.2, y + 0.05, CW - 8.2, 1.2, "Why it matters",
-            "Minimising length and minimising cost are the same problem only "
-            "on flat ground. The saving is free — same algorithm, better "
-            "edge weight.")
+    finding(s, M + 8.2, y + 0.02, CW - 8.2, 1.26, "What we changed",
+            "Edge weight is no longer straight-line distance, but true slope "
+            "length × a trenching multiplier that rises with gradient. "
+            "Minimum length = minimum cost only on flat ground.")
 
     notes(s, "RESULT 1 - 55 s. We replaced straight-line distance with "
              "terrain-weighted construction cost: 3D slope length times a "
@@ -326,15 +340,16 @@ def build():
          space_after=10)
     rich(tf, [("ρgΔz over 282 m   ", INK2, False),
               ("26.3 bar", BAD, True)], 13.5, font=MONO, space_after=5)
-    rich(tf, [("PN16 pipe class     ", INK2, False),
+    rich(tf, [("PN16 pipe rating    ", INK2, False),
               ("16.0 bar", INK, True)], 13.5, font=MONO, space_after=5)
     rich(tf, [("one-zone limit      ", INK2, False),
               ("151 m", WARN, True)], 13.5, font=MONO)
 
-    stat(s, x, 4.05, w, 1.15, "Pressure zones needed",
-         "Stuttgart 2   Bremen 1", "an exchanger station breaks the static column",
-         WARN)
-    finding(s, x, 5.45, w, 1.7, "Spectral bisection at work",
+    stat(s, x, 4.02, w, 1.52, "Pressure zones needed",
+         "Stuttgart 2   Bremen 1",
+         "PN16 = Pressure Nominal: pipe rated to 16 bar. An exchanger station "
+         "splits the network so neither half exceeds it.", WARN)
+    finding(s, x, 5.74, w, 1.6, "Spectral bisection at work",
             "Where to split is a balanced minimum cut — separate by "
             "elevation, cut as few pipes as possible. The Fiedler vector of the "
             "Laplacian is the classical relaxation of exactly that.")
@@ -373,25 +388,29 @@ def build():
 
     # compact N-1 table
     tf = textbox(s, x, 1.78, w, 2.4)
-    para(tf, "STUTTGART · WORST SINGLE PIPE FAILURE", 9.5, MUTED, font=MONO,
-         first=True, space_after=8)
+    para(tf, "STUTTGART  ·  N-1 = LOSS OF ANY ONE PIPE", 9.5, MUTED,
+         font=MONO, first=True, space_after=6)
+    rich(tf, [("topology         ", MUTED, False), ("EUR/MWh  ", MUTED, False),
+              ("brdg  ", MUTED, False), ("served", MUTED, False)],
+         10, font=MONO, space_after=5)
     for name, cost, br, n1, col in [
         ("Star", "43.72", "40", "95.6 %", COOL),
         ("MST-terrain", "22.39", "40", "0.0 %", BAD),
-        ("RSMT (cheapest)", "20.87", "59", "0.0 %", BAD),
+        ("RSMT Steiner", "20.87", "59", "0.0 %", BAD),
         ("MST-terrain +R", "26.46", "17", "91.9 %", COOL),
     ]:
         rich(tf, [(f"{name:<16}", INK2, False), (f"{cost:>6}  ", INK, False),
                   (f"{br:>3} br  ", MUTED, False), (f"{n1:>7}", col, True)],
              11.5, font=MONO, space_after=5)
 
-    finding(s, x, 4.35, w, 1.5, "Answering the fault question",
-            "A Steiner tree is still a tree. It buys length — RSMT is the "
-            "cheapest topology — but concentrates flow into shared trunks, "
-            "so it is MORE fragile.")
-    finding(s, x, 6.05, w, 1.1, "The fix costs 4.3 %",
-            "One redundant pipe: −57 % expected unserved demand, N−1 "
-            "survival 0 → 68 %.", COOL)
+    finding(s, x, 4.42, w, 1.68, "Does a Steiner tree fix it?",
+            "RSMT = Rectilinear Steiner Minimal Tree: extra junction points "
+            "are allowed, so it is shorter and cheapest here. But it is still "
+            "a TREE, and it concentrates flow into shared trunks — so it is "
+            "MORE fragile, not less.")
+    finding(s, x, 6.28, w, 1.15, "Only a loop fixes it — for 4.3 %",
+            "One redundant pipe: −57 % Expected Unserved Demand (EUD); "
+            "N-1 survival rises 0 → 68 %.", COOL)
 
     notes(s, "RESULT 3 - 60 s. Structurally, every edge of a tree is a bridge, "
              "so any single pipe failure strands everything downstream. This "
@@ -443,9 +462,9 @@ def build():
     finding(s, x, 5.25, w, 1.0, "Paper finding 1",
             "Table 2 is not self-consistent: the Star/MST cost ratio implies "
             "357 kg/s, the absolute cost implies 87.5 — 3×.", WARN)
-    finding(s, x, 6.40, w, 0.95, "Paper finding 2",
-            "Reported ESMT/MST = 0.86555 sits below the proved Du–Hwang "
-            "bound √3/2 = 0.86603.", WARN)
+    finding(s, x, 6.34, w, 1.02, "Paper finding 2",
+            "Their Euclidean Steiner / MST length ratio 0.86555 sits below "
+            "the proved Du-Hwang lower bound √3/2 = 0.86603.", WARN)
 
     notes(s, "RESULT 4 - 50 s. All three MST implementations written from "
              "scratch and verified to return identical tree weight. Our own "
@@ -514,6 +533,52 @@ def build():
         "minimum-cost nor necessarily buildable, and it is never robust. "
         "Happy to take questions."))
 
+    # ======================================================= 8 REFERENCE
+    # Not presented - a backup slide to jump to during the 5 min of QnA.
+    s = new_slide(prs)
+    rail(s, 8, "Reference · not presented")
+    heading(s, "Abbreviations and data sources", size=27)
+
+    tf = textbox(s, M, 1.72, 6.0, 5.3)
+    para(tf, "ABBREVIATIONS", 9.5, MUTED, font=MONO, first=True, space_after=9)
+    for ab, full in [
+        ("MST", "Minimum Spanning Tree"),
+        ("ESMT", "Euclidean Steiner Minimal Tree"),
+        ("RSMT", "Rectilinear Steiner Minimal Tree"),
+        ("TAC", "Total Annual Cost"),
+        ("EUD", "Expected Unserved Demand"),
+        ("N-1", "loss of any one component (single contingency)"),
+        ("DN", "Diameter Nominal - standard pipe size"),
+        ("PN16", "Pressure Nominal - pipe rated to 16 bar"),
+        ("DEM", "Digital Elevation Model"),
+        ("SRTM", "Shuttle Radar Topography Mission (NASA)"),
+        ("LP", "Linear Programming"),
+        ("lambda_2", "algebraic connectivity (Fiedler value)"),
+    ]:
+        rich(tf, [(f"{ab:<10}", HOT, True), (full, INK2, False)],
+             12.5, font=MONO, space_after=6)
+
+    tf = textbox(s, M + 6.4, 1.72, CW - 6.4, 5.3)
+    para(tf, "DATA AND SOURCES - ALL REAL, ALL CITED", 9.5, MUTED, font=MONO,
+         first=True, space_after=9)
+    for src, what in [
+        ("AixDHN", "RWTH Aachen EBC, MIT licence - real German district "
+                   "heating areas, demand and census cells"),
+        ("NASA SRTM 30 m", "elevation, via the OpenTopoData API"),
+        ("EN 253", "European standard for pre-insulated bonded pipe - "
+                   "the diameter catalogue"),
+        ("Persson & Werner 2011", "district-heating trench cost function"),
+        ("Valincius et al. 2015", "pipe failure rates, 0.02-0.31 per km-year"),
+        ("Eurostat H2 2025", "German industrial electricity, 0.1922 EUR/kWh"),
+        ("Gao et al. 2020", "the reproduced paper, Chem. Eng. Trans. 81"),
+    ]:
+        para(tf, src, 12.5, COOL, bold=True, space_after=2)
+        para(tf, what, 11.5, INK2, spacing=0.96, space_after=8)
+
+    notes(s, "BACKUP - do not present. Jump here in QnA if asked what an "
+             "abbreviation means or where a number came from. Full provenance "
+             "for every value is in docs/DATA_SOURCES.md.")
+
     os.makedirs("build", exist_ok=True)
     out = "build/CLL798_prelim_5min.pptx"
     prs.save(out)
@@ -523,6 +588,8 @@ def build():
 if __name__ == "__main__":
     out = build()
     size = os.path.getsize(out) / 1024 / 1024
+    from pptx import Presentation as _P
+    n_slides = len(_P(out).slides._sldIdLst)
 
     with open("build/SPEAKER_NOTES.md", "w", encoding="utf-8") as fh:
         fh.write("# Speaker script — 5 minute prelim\n\n")
@@ -534,5 +601,6 @@ if __name__ == "__main__":
             total += int(m) * 60 + int(sec)
             fh.write(f"## {title}  —  {t}\n\n{text}\n\n")
         fh.write(f"\n**Total: {total//60}:{total%60:02d}**\n")
-    print(f"wrote {out}  ({size:.1f} MB, 7 slides)")
+    print(f"wrote {out}  ({size:.1f} MB, {n_slides} slides: "
+          f"7 presented + 1 reference)")
     print("wrote build/SPEAKER_NOTES.md")
