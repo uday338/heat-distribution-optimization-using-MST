@@ -160,6 +160,7 @@ results/tables/final_*.json   all post-prelim results
 results/figures_final/        post-prelim figures
 build/CLL798_final_6min.pptx       final presentation (6 min)
 build/CLL798_final_detailed.pptx   longer version with more detail
+build/CLL798_final_speaker_script.pdf   word-for-word script + likely questions
 ```
 
 ## Running it
