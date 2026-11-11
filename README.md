@@ -147,6 +147,19 @@ run_real.py        main study on the two real districts
 make_figures.py    all presentation figures
 docs/DATA_SOURCES.md   provenance of every number
 results/           figures, tables, cached topologies
+
+# added after the prelim (see docs/POST_PRELIM_WORK.md)
+run_final.py              robustness (120 networks), exhaustive redundancy,
+                          sensitivity, seasonal load
+run_final_F.py            flow-aware edge-swap search
+run_final_G.py            redundancy ILP, relief sweep, larger networks,
+                          combined design, cost vs graph metrics
+make_figures_final.py     final-presentation figures (needs run_real.py first)
+make_figures_final_extra.py   relief, ILP and metric figures
+results/tables/final_*.json   all post-prelim results
+results/figures_final/        post-prelim figures
+build/CLL798_final_6min.pptx       final presentation (6 min)
+build/CLL798_final_detailed.pptx   longer version with more detail
 ```
 
 ## Running it
@@ -156,6 +169,13 @@ pip install numpy scipy matplotlib networkx pandas scikit-learn pulp pypdf
 python fetch_dems.py      # ~8 min, downloads real SRTM terrain
 python run_real.py        # main analysis
 python make_figures.py    # figures
+
+# post-prelim work (needs the cached topologies from run_real.py)
+python run_final.py A B C D E
+python run_final_F.py              # edge swaps, design-load costing
+python run_final_F.py seasonal     # edge swaps, seasonal costing
+python run_final_G.py ilp relief design scale:80:42,0,1,2,3 scale:160:42,0
+python make_figures_final.py && python make_figures_final_extra.py
 ```
 
 ## Data
