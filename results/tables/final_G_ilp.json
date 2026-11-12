@@ -1,0 +1,202 @@
+{
+ "flat": {
+  "rows": [
+   {
+    "k": 1,
+    "greedy_red": 38.480729286274325,
+    "greedy_cost": 3.4082275650076417,
+    "ilp_same_budget": 38.48072928949868,
+    "ilp_max": 79.84970645903947,
+    "ilp_max_cost": 9.999771998311202,
+    "greedy_gain_red": 79.84970645903947,
+    "secs": 0.05642867088317871,
+    "bridges_left_greedy": 29,
+    "bruteforce_max": 79.84970645903947,
+    "bruteforce_same_budget": 38.480729286274325
+   },
+   {
+    "k": 2,
+    "greedy_red": 65.04834655135095,
+    "greedy_cost": 7.015592668053659,
+    "ilp_same_budget": 65.04834655135095,
+    "ilp_max": 95.62471377954985,
+    "ilp_max_cost": 25.052672805621214,
+    "greedy_gain_red": 95.62471377954985,
+    "secs": 0.07974720001220703,
+    "bridges_left_greedy": 18,
+    "bruteforce_max": 95.62471377954988,
+    "bruteforce_same_budget": 65.04834655135095
+   },
+   {
+    "k": 3,
+    "greedy_red": 96.7408736259064,
+    "greedy_cost": 12.756661309815998,
+    "ilp_same_budget": 96.74087362622987,
+    "ilp_max": 97.94296179082325,
+    "ilp_max_cost": 46.07987704525593,
+    "greedy_gain_red": 97.94296179082322,
+    "secs": 0.16124176979064941,
+    "bridges_left_greedy": 7,
+    "bruteforce_max": 97.94296179082325,
+    "bruteforce_same_budget": 96.74087362590642
+   },
+   {
+    "k": 4,
+    "greedy_red": 97.79931401674351,
+    "greedy_cost": 16.30994690627081,
+    "ilp_same_budget": 97.79931401695463,
+    "ilp_max": 99.00140218166035,
+    "ilp_max_cost": 45.473046196478464,
+    "greedy_gain_red": 99.00140218166035,
+    "secs": 0.3104114532470703,
+    "bridges_left_greedy": 5
+   },
+   {
+    "k": 5,
+    "greedy_red": 98.12984808226162,
+    "greedy_cost": 18.300729852121854,
+    "ilp_same_budget": 98.12984808226162,
+    "ilp_max": 99.77343508353412,
+    "ilp_max_cost": 58.51120524757872,
+    "greedy_gain_red": 99.7734350835341,
+    "secs": 0.29265427589416504,
+    "bridges_left_greedy": 4
+   },
+   {
+    "k": 6,
+    "greedy_red": 99.04984392306783,
+    "greedy_cost": 24.87840714128891,
+    "ilp_same_budget": 99.04984392306783,
+    "ilp_max": 100.00000000000001,
+    "ilp_max_cost": 77.23128645410237,
+    "greedy_gain_red": 100.0,
+    "secs": 0.2091670036315918,
+    "bridges_left_greedy": 3
+   },
+   {
+    "k": 7,
+    "greedy_red": 99.49134275942347,
+    "greedy_cost": 28.64102532340712,
+    "ilp_same_budget": 99.55850116364435,
+    "ilp_max": 100.00000000000001,
+    "ilp_max_cost": 74.07252417129702,
+    "greedy_gain_red": 100.0,
+    "secs": 0.12446045875549316,
+    "bridges_left_greedy": 2
+   },
+   {
+    "k": 8,
+    "greedy_red": 99.8464106067737,
+    "greedy_cost": 34.17247373769381,
+    "ilp_same_budget": 100.00000000000001,
+    "ilp_max": 100.00000000000001,
+    "ilp_max_cost": 74.07252417129702,
+    "greedy_gain_red": 100.0,
+    "secs": 0.19594621658325195,
+    "bridges_left_greedy": 1
+   }
+  ],
+  "n_vars": 820,
+  "n_cands": 780
+ },
+ "hilly": {
+  "rows": [
+   {
+    "k": 1,
+    "greedy_red": 57.221982394756125,
+    "greedy_cost": 4.245431421059707,
+    "ilp_same_budget": 57.22198239641249,
+    "ilp_max": 77.96734728073518,
+    "ilp_max_cost": 20.709369315302283,
+    "greedy_gain_red": 77.96734728073515,
+    "secs": 0.042173147201538086,
+    "bridges_left_greedy": 31,
+    "bruteforce_max": 77.9673472807352,
+    "bruteforce_same_budget": 57.22198239475613
+   },
+   {
+    "k": 2,
+    "greedy_red": 82.18944196767418,
+    "greedy_cost": 12.634430287507968,
+    "ilp_same_budget": 83.70278717209784,
+    "ilp_max": 93.82698555920783,
+    "ilp_max_cost": 71.76407362975456,
+    "greedy_gain_red": 93.82698555920781,
+    "secs": 0.07165789604187012,
+    "bridges_left_greedy": 22,
+    "bruteforce_max": 93.82698555920781,
+    "bruteforce_same_budget": 83.70278717209784
+   },
+   {
+    "k": 3,
+    "greedy_red": 89.12625243172708,
+    "greedy_cost": 16.82238503280814,
+    "ilp_same_budget": 89.12625243336377,
+    "ilp_max": 98.0127356446221,
+    "ilp_max_cost": 96.97053405610723,
+    "greedy_gain_red": 98.01273564462208,
+    "secs": 0.14525628089904785,
+    "bridges_left_greedy": 20,
+    "bruteforce_max": 98.01273564462208,
+    "bruteforce_same_budget": 89.12625243172708
+   },
+   {
+    "k": 4,
+    "greedy_red": 91.77578026796206,
+    "greedy_cost": 19.835882021867494,
+    "ilp_same_budget": 92.79637814466726,
+    "ilp_max": 99.25152114962178,
+    "ilp_max_cost": 91.37972959416643,
+    "greedy_gain_red": 99.25152114962175,
+    "secs": 0.15193939208984375,
+    "bridges_left_greedy": 17
+   },
+   {
+    "k": 5,
+    "greedy_red": 93.93964365069168,
+    "greedy_cost": 24.515316331587968,
+    "ilp_same_budget": 94.96024152739692,
+    "ilp_max": 99.86069631454441,
+    "ilp_max_cost": 138.17978971890506,
+    "greedy_gain_red": 99.86069631454438,
+    "secs": 0.18493294715881348,
+    "bridges_left_greedy": 14
+   },
+   {
+    "k": 6,
+    "greedy_red": 94.96024152739692,
+    "greedy_cost": 28.056696444767496,
+    "ilp_same_budget": 95.72350314338024,
+    "ilp_max": 99.99999999999997,
+    "ilp_max_cost": 171.5153566283931,
+    "greedy_gain_red": 99.99999999999996,
+    "secs": 0.575082540512085,
+    "bridges_left_greedy": 12
+   },
+   {
+    "k": 7,
+    "greedy_red": 96.60479497166986,
+    "greedy_cost": 38.458906235108586,
+    "ilp_same_budget": 97.94227777034973,
+    "ilp_max": 99.99999999999997,
+    "ilp_max_cost": 190.37268419930064,
+    "greedy_gain_red": 99.99999999999996,
+    "secs": 0.8077647686004639,
+    "bridges_left_greedy": 11
+   },
+   {
+    "k": 8,
+    "greedy_red": 97.61312009949779,
+    "greedy_cost": 45.11295031012084,
+    "ilp_same_budget": 98.94145601191128,
+    "ilp_max": 99.99999999999997,
+    "ilp_max_cost": 190.37268419930064,
+    "greedy_gain_red": 99.99999999999996,
+    "secs": 0.404172420501709,
+    "bridges_left_greedy": 9
+   }
+  ],
+  "n_vars": 820,
+  "n_cands": 780
+ }
+}
